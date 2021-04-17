@@ -21,7 +21,7 @@ export default function Detail() {
     try {
       const response = await getPokeDetail(urlDetail);
       console.log(response);
-      setImage(response.sprites.front_shiny);
+      setImage(response.sprites.front_default);
       setDetail(response);
     } catch (error) {}
   };

@@ -11,7 +11,8 @@ const CardImage = (props) => {
     try {
       const response = await getPokeDetail(props.urlCard);
       console.log(response);
-      setImage(response.sprites.front_shiny);
+      // eslint-disable-next-line no-undef
+      setImage(response.sprites.front_default);
     } catch (error) {}
   };
 
