@@ -10,7 +10,7 @@ export const DetailContext = createContext({});
 
 export default function AppContext({ children }) {
   const [list, setList] = useState([]);
-  const [urlDetail, setUrlDetail] = useState('tesss');
+  const [urlDetail, setUrlDetail] = useState('');
 
   const getPoke = async () => {
     try {
@@ -36,3 +36,23 @@ export default function AppContext({ children }) {
     </ListContext.Provider>
   );
 }
+
+// DEPRECATED FUNCTION
+// const getPoke = () => {
+//   setList(postData);
+// };
+
+// export async function getServerSideProps() {
+//   try {
+//     const response = await getAllPoke(
+//       'https://pokeapi.co/api/v2/pokemon?limit=100&offset=200'
+//     );
+//     console.log(response);
+
+//     return {
+//       props: { postData: response.results },
+//     };
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// }
