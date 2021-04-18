@@ -1,16 +1,12 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable semi */
 import { createContext, useEffect, useState, ReactNode } from 'react'
+import { PokemonList } from '../interface/index'
 
 // import API
 import { getAllPoke } from '../API/fetchAPI'
 
 // Type Checking
-type PokemonList = {
-  name: string
-  url: string
-}
-
 type ListContent = {
   list: PokemonList[]
   setList: (c: PokemonList[]) => void

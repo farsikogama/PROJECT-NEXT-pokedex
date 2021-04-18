@@ -16,3 +16,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.colorcheck {
+  color: aquamarine;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}

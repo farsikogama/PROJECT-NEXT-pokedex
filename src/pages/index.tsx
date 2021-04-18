@@ -9,7 +9,7 @@ import Card from '../components/Card/Card'
 import { ListContext, DetailContext } from '../contexts/AppContext'
 
 // Styling
-const CardContainer = styled.div`
+const CardWrapper = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
@@ -19,7 +19,7 @@ const CardContainer = styled.div`
 `
 const Heading = styled.h1`
   font-family: 'Anton', sans-serif;
-  font-size: calc(2.5rem + 2vw);
+  font-size: calc(2.5rem + 4vw);
   text-align: center;
 `
 
@@ -29,10 +29,10 @@ export default function Home() {
 
   return (
     <>
-      <Heading>Pokemon List</Heading>
-      <CardContainer>
-        <Card list={list} setUrl={setUrlDetail} />
-      </CardContainer>
+      <Heading>POKEDEX</Heading>
+      <CardWrapper>
+        <Card list={list} setUrl={setUrlDetail} CardPoke={true} />
+      </CardWrapper>
     </>
   )
 }

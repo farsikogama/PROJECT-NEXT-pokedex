@@ -3,6 +3,9 @@
 /* eslint-disable semi */
 import { useEffect, useState, useContext } from 'react'
 
+// import component
+import Card from '../../components/Card/Card'
+
 // import API
 import { getPokeDetail } from '../../API/fetchAPI'
 
@@ -41,14 +44,16 @@ export default function Detail() {
   useEffect(() => {
     pokeDetail()
   }, [])
+
   return (
     <>
-      <div>
-        <h1>{detail.name}</h1>
-        <h1>{detail.height}</h1>
-        <h1>{detail.weight}</h1>
-        <img src={image} width='500px' height='500px' />
-      </div>
+      <Card
+        PokeName={detail.name}
+        height={detail.height}
+        weight={detail.weight}
+        image={image}
+        CardDetail={true}
+      />
     </>
   )
 }
