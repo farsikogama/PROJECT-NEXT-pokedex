@@ -1,34 +1,46 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable camelcase */
 /* eslint-disable semi */
-import styled from 'styled-components';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react'
 
 // import API
-import { getPokeDetail } from '../../API/fetchAPI';
-
-// import component
-import Image from 'next/image';
+import { getPokeDetail } from '../../API/fetchAPI'
 
 // import context
-import { DetailContext } from '../../contexts/AppContext';
+import { DetailContext } from '../../contexts/AppContext'
+
+// Type Checking
+type Props = {
+  name: string
+  weight: number
+  height: number
+}
 
 export default function Detail() {
-  const { urlDetail } = useContext(DetailContext);
+  const { urlDetail } = useContext(DetailContext)
 
-  const [image, setImage] = useState();
-  const [detail, setDetail] = useState({});
+  const [image, setImage] = useState()
+  const [detail, setDetail] = useState<Props>({
+    name: '',
+    weight: 0,
+    height: 0,
+  })
 
   const pokeDetail = async () => {
     try {
-      const response = await getPokeDetail(urlDetail);
-      console.log(response);
-      setImage(response.sprites.front_default);
-      setDetail(response);
+      const response = await getPokeDetail(urlDetail)
+      setImage(response.sprites.front_default)
+      setDetail({
+        name: response.name,
+        height: response.height,
+        weight: response.weight,
+      })
     } catch (error) {}
-  };
+  }
 
   useEffect(() => {
-    pokeDetail();
-  }, []);
+    pokeDetail()
+  }, [])
   return (
     <>
       <div>
@@ -38,5 +50,5 @@ export default function Detail() {
         <img src={image} width='500px' height='500px' />
       </div>
     </>
-  );
+  )
 }

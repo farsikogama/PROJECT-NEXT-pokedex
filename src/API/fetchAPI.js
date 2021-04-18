@@ -1,5 +1,6 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable semi */
-import axios from 'axios';
+import axios from 'axios'
 
 /**
  * Under the hood doing axios request to the API endpoint
@@ -15,32 +16,31 @@ export async function fetchFrom(endpoint, token, options, head) {
   try {
     const headers = token
       ? { token: localStorage.getItem('token'), ...head }
-      : { ...head };
-    const method = options ? options.method : 'GET';
-    const data = options ? options.body : '';
+      : { ...head }
+    const method = options ? options.method : 'GET'
+    const data = options ? options.body : ''
 
     const response = await axios({
       method,
       url: `${endpoint}`,
       headers,
       data,
-    });
+    })
 
     return {
       ...response.data,
       status: response.status,
       statusText: response.statusText,
-    };
+    }
   } catch (err) {
-    console.error(err.message);
+    console.error(err.message)
   }
-  1;
 }
 
-export const getAllPoke = (endpoint) => {
-  return fetchFrom(`${endpoint}`, false);
-};
+export const getAllPoke = endpoint => {
+  return fetchFrom(`${endpoint}`, false)
+}
 
-export const getPokeDetail = (endpoint) => {
-  return fetchFrom(`${endpoint}`, false);
-};
+export const getPokeDetail = endpoint => {
+  return fetchFrom(`${endpoint}`, false)
+}
