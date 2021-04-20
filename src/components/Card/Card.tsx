@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable semi */
 // import interface
 import { PokemonList } from '../../interface/index'
@@ -10,8 +11,10 @@ import CardImage from '../CardImage/CardImage'
 // Type Checking
 type Props = {
   list?: PokemonList[] | null
+  searchResult?: PokemonList[] | null
+  setSearchResult?: (c: PokemonList[]) => void
   setUrl?: (c: string) => void | null
-  CardPoke?: any
+  CardPoke?: boolean
   CardDetail?: any
   PokeName?: string
   height?: number
@@ -69,19 +72,33 @@ const Card = (props: Props) => {
   return (
     <>
       {props.CardPoke &&
-        props.list.map((poke, index) => (
-          <Link key={index} href={`/pokemons/${poke.name}`}>
-            <CardDiv
-              onClick={() => props.setUrl(poke.url)}
-              CardPoke={props.CardPoke}
-            >
-              <div>
-                <Heading>{poke.name}</Heading>
-              </div>
-              <CardImage urlCard={poke.url} />
-            </CardDiv>
-          </Link>
-        ))}
+        (props.searchResult?.length
+          ? props.searchResult.map((poke, index) => (
+              <Link key={index} href={`/pokemons/${poke.name}`}>
+                <CardDiv
+                  onClick={() => (props.setUrl ? props.setUrl(poke.url) : null)}
+                  CardPoke={props.CardPoke}
+                >
+                  <div>
+                    <Heading>{poke.name}</Heading>
+                  </div>
+                  <CardImage urlCard={poke.url} />
+                </CardDiv>
+              </Link>
+            ))
+          : props.list?.map((poke, index) => (
+              <Link key={index} href={`/pokemons/${poke.name}`}>
+                <CardDiv
+                  onClick={() => (props.setUrl ? props.setUrl(poke.url) : null)}
+                  CardPoke={props.CardPoke}
+                >
+                  <div>
+                    <Heading>{poke.name}</Heading>
+                  </div>
+                  <CardImage urlCard={poke.url} />
+                </CardDiv>
+              </Link>
+            )))}
 
       {props.CardDetail && (
         <CardWrapper>

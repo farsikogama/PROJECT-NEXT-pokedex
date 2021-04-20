@@ -15,7 +15,6 @@ const CardImage = (props: Props) => {
   const pokeDetail = async () => {
     try {
       const response = await getPokeDetail(props.urlCard)
-      console.log(response)
       // eslint-disable-next-line no-undef
       setImage(response.sprites.front_default)
     } catch (error) {}
@@ -23,7 +22,7 @@ const CardImage = (props: Props) => {
 
   useEffect(() => {
     pokeDetail()
-  }, [])
+  }, [props.urlCard])
 
   return (
     <>

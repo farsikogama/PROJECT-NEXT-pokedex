@@ -1,11 +1,10 @@
 import '../styles/globals.css'
-import { ReactNode } from 'react'
 
 // import context
 import AppContext from '../contexts/AppContext'
 
 type Props = {
-  Component?: ReactNode
+  Component: any
   pageProps?: any
 }
 

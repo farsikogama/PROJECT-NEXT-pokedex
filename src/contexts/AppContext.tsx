@@ -17,6 +17,11 @@ type DetailContent = {
   setUrlDetail: (c: string) => void
 }
 
+type SearchContent = {
+  searchResult: PokemonList[]
+  setSearchResult: (c: PokemonList[]) => void
+}
+
 type Props = {
   children?: ReactNode
 }
@@ -30,10 +35,15 @@ export const DetailContext = createContext<DetailContent>({
   urlDetail: '',
   setUrlDetail: () => {},
 })
+export const SearchContext = createContext<SearchContent>({
+  searchResult: [],
+  setSearchResult: () => {},
+})
 
 export default function AppContext({ children }: Props) {
   const [list, setList] = useState<PokemonList[]>([])
   const [urlDetail, setUrlDetail] = useState<string>('')
+  const [searchResult, setSearchResult] = useState<PokemonList[]>([])
 
   const getPoke = async () => {
     try {
@@ -55,7 +65,9 @@ export default function AppContext({ children }: Props) {
   return (
     <ListContext.Provider value={{ list, setList }}>
       <DetailContext.Provider value={{ urlDetail, setUrlDetail }}>
-        {children}
+        <SearchContext.Provider value={{ searchResult, setSearchResult }}>
+          {children}
+        </SearchContext.Provider>
       </DetailContext.Provider>
     </ListContext.Provider>
   )
