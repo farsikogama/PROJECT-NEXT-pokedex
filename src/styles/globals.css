@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 html,
 body {
   padding: 0;
@@ -13,4 +15,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.colorcheck {
+  color: aquamarine;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
