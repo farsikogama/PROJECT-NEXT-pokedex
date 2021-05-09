@@ -1,7 +1,7 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable semi */
 import styled from 'styled-components'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 // import component
 import Card from '../components/Card/Card'
@@ -34,6 +34,10 @@ export default function Home() {
   const { list } = useContext(ListContext)
   const { setUrlDetail } = useContext(DetailContext)
   const { searchResult, setSearchResult } = useContext(SearchContext)
+
+  useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_BASE_URL)
+  }, [])
 
   return (
     <>

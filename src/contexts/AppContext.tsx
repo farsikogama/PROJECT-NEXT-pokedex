@@ -1,29 +1,29 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable semi */
 import { createContext, useEffect, useState, ReactNode } from 'react'
-import { PokemonList } from '../interface/index'
+import { PokemonInterface } from '../interface/index'
 
 // import API
 import { getAllPoke } from '../API/fetchAPI'
 
 // Type Checking
 type ListContent = {
-  list: PokemonList[]
-  setList: (c: PokemonList[]) => void
+  list: Array<PokemonInterface>
+  setList: (listValue: Array<PokemonInterface>) => void
 }
 
 type DetailContent = {
   urlDetail: string
-  setUrlDetail: (c: string) => void
+  setUrlDetail: (urlValue: string) => void
 }
 
 type SearchContent = {
-  searchResult: PokemonList[]
-  setSearchResult: (c: PokemonList[]) => void
+  searchResult: Array<PokemonInterface>
+  setSearchResult: (searchValue: Array<PokemonInterface>) => void
 }
 
-type Props = {
-  children?: ReactNode
+type AppContextProps = {
+  children: ReactNode
 }
 
 // export context
@@ -40,15 +40,19 @@ export const SearchContext = createContext<SearchContent>({
   setSearchResult: () => {},
 })
 
-export default function AppContext({ children }: Props) {
-  const [list, setList] = useState<PokemonList[]>([])
-  const [urlDetail, setUrlDetail] = useState<string>('')
-  const [searchResult, setSearchResult] = useState<PokemonList[]>([])
+export default function AppContext({ children }: AppContextProps) {
+  // pisah contextnya
+  // bikin object baru yang isinya ada detail pokemonnya
+  const [list, setList] = useState<Array<PokemonInterface>>([])
 
+  const [urlDetail, setUrlDetail] = useState<string>('')
+  const [searchResult, setSearchResult] = useState<Array<PokemonInterface>>([])
+
+  // fetching API seharusnya di level pages
   const getPoke = async () => {
     try {
       const response = await getAllPoke(
-        'https://pokeapi.co/api/v2/pokemon?limit=100&offset=200'
+        `${process.env.NEXT_PUBLIC_BASE_URL}pokemon?limit=100&offset=200`
       )
       const data = response.results
 

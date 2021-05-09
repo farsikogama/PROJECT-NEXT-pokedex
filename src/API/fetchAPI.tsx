@@ -1,6 +1,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable semi */
-import axios from 'axios'
+import axios, { Method } from 'axios'
 
 /**
  * Under the hood doing axios request to the API endpoint
@@ -12,18 +12,20 @@ import axios from 'axios'
  * @returns
  */
 
-export async function fetchFrom(endpoint, token, options, head) {
+export async function fetchFrom({
+  endpoint,
+  options,
+}: {
+  endpoint: string
+  options: { method: Method; body?: string }
+}) {
   try {
-    const headers = token
-      ? { token: localStorage.getItem('token'), ...head }
-      : { ...head }
     const method = options ? options.method : 'GET'
     const data = options ? options.body : ''
 
     const response = await axios({
       method,
       url: `${endpoint}`,
-      headers,
       data,
     })
 
@@ -37,10 +39,10 @@ export async function fetchFrom(endpoint, token, options, head) {
   }
 }
 
-export const getAllPoke = endpoint => {
-  return fetchFrom(`${endpoint}`, false)
+export const getAllPoke = (endpoint: string) => {
+  return fetchFrom({ endpoint, options: { method: 'GET' } })
 }
 
-export const getPokeDetail = endpoint => {
-  return fetchFrom(`${endpoint}`, false)
+export const getPokeDetail = (endpoint: string) => {
+  return fetchFrom({ endpoint, options: { method: 'GET' } })
 }

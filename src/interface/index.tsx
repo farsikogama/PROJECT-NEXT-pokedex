@@ -1,4 +1,4 @@
-export type PokemonList = {
+export interface PokemonInterface {
   name: string
   url: string
 }
