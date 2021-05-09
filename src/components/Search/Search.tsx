@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { PokemonList } from '../../interface/index'
+import { PokemonInterface } from '../../interface/index'
 
 // import components
 
 // Type Checking
 type Props = {
-  list: PokemonList[]
-  setSearchResult: (c: PokemonList[]) => void
+  list: PokemonInterface[]
+  setSearchResult: (c: PokemonInterface[]) => void
 }
 
 // Styling
