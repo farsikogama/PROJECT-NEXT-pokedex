@@ -24,13 +24,11 @@ type Props = {
 
 // Styling
 const CardWrapper = styled.div`
-  margin: auto;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 300px;
+  flex-direction: column;
+  width: 100vw;
   height: 100vh;
-  flex-wrap: wrap;
 `
 
 const CardDiv = styled.div`
@@ -40,7 +38,7 @@ const CardDiv = styled.div`
       flex-basis: 30%;
       margin: 0.5rem;
       border: 1px solid black;
-      border-radius: 20px;
+      border-radius: 10px;
       padding: 30px;
       cursor: pointer;
       display: flex;
@@ -53,15 +51,14 @@ const CardDiv = styled.div`
   ${(props: Props) =>
     props.CardDetail &&
     css`
+      flex-basis: 70%;
+      width: 20rem;
       display: flex;
-      justify-content: center;
       align-items: center;
       flex-direction: column;
-      flex-basis: 100%;
       border: 1px solid black;
-      border-radius: 50px;
-      padding: 30px;
-      margin-bottom: -20px;
+      border-radius: 30px;
+      margin: 2vw auto 20px auto; // atas-kanan-bawah-kiri
     `}
 `
 const Heading = styled.h1`
@@ -121,8 +118,8 @@ const Card = (props: Props) => {
           <CardDiv CardDetail={props.CardDetail}>
             <img src={props.image} width='150px' height='150px' />
             <h1>{props.PokeName}</h1>
-            <h1>Height: {props.height}</h1>
-            <h1>Weight: {props.weight}</h1>
+            <h3>Height: {props.height}</h3>
+            <h3>Weight: {props.weight}</h3>
           </CardDiv>
           <Link href='/'>
             <button>back to home</button>

@@ -11,19 +11,20 @@ type Props = {
 }
 
 // Styling
-const InputForm = styled.input`
-  flex-basis: 60%;
-  margin: 10px;
-  border-radius: 2px;
-  border: 1px solid grey;
-  height: 30px;
-`
 const FormWrapper = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80vw;
   margin: auto;
+`
+
+const InputForm = styled.input`
+  flex-basis: 60%;
+  margin: 10px;
+  border-radius: 2px;
+  border: 1px solid grey;
+  height: 30px;
 `
 
 const Input = (props: Props) => {
