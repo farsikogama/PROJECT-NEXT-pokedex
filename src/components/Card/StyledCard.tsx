@@ -60,6 +60,7 @@ export const CardDiv = styled.div`
       flex-direction: column;
       border: 1px solid black;
       border-radius: 30px;
+      padding: 25px;
       margin: 0 auto 3vh auto; // atas-kanan-bawah-kiri
       @media ${device.mobileS} {
         width: 70vw;
