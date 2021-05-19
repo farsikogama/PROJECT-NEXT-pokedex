@@ -23,17 +23,24 @@ export const CardDiv = styled.div`
   ${(props: Props) =>
     props.CardPoke &&
     css`
+      color: black;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       margin: 0.5rem;
-      border: 1px solid black;
-      border-radius: 10px;
+      border-radius: 20px;
       padding: 20px;
       cursor: pointer;
+      box-shadow: 0 0px 7px rgba(0, 0, 0, 0.5);
+      background: whitesmoke;
+      // &:before {
+      //   content: '';
+      //   background: #37365f;
+      //   filter: blur(20px);
+      // }
       &:hover {
-        background: aquamarine;
+        background: darkgrey;
       }
       @media ${device.mobileS} {
         flex-basis: 90%;
@@ -58,10 +65,12 @@ export const CardDiv = styled.div`
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      border: 1px solid black;
+      background: whitesmoke;
+      box-shadow: 0 0px 7px rgba(0, 0, 0, 0.5);
       border-radius: 30px;
       padding: 25px;
       margin: 0 auto 3vh auto; // atas-kanan-bawah-kiri
+      color: black;
       @media ${device.mobileS} {
         width: 70vw;
         flex-basis: 45%;
