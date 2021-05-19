@@ -2,9 +2,11 @@
 /* eslint-disable camelcase */
 /* eslint-disable semi */
 import { useEffect, useState, useContext } from 'react'
+import styled from 'styled-components'
 
 // import component
 import Card from '../../components/Card/Card'
+import Link from 'next/link'
 
 // import API
 import { getPokeDetail } from '../../API/fetchAPI'
@@ -46,7 +48,7 @@ export default function Detail() {
   }, [])
 
   return (
-    <>
+    <CardWrapper>
       <Card
         PokeName={detail.name}
         height={detail.height}
@@ -54,6 +56,19 @@ export default function Detail() {
         image={image}
         CardDetail={true}
       />
-    </>
+      <Link href='/'>
+        <button>back to home</button>
+      </Link>
+    </CardWrapper>
   )
 }
+
+// import styling
+export const CardWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+`

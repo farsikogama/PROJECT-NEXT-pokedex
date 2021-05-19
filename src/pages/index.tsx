@@ -2,6 +2,10 @@
 /* eslint-disable semi */
 import styled from 'styled-components'
 import { useContext, useEffect } from 'react'
+import { device } from '../components/MediaQueries'
+
+// import API
+import { getAllPoke } from '../API/fetchAPI'
 
 // import component
 import Head from 'next/head'
@@ -15,29 +19,27 @@ import {
   SearchContext,
 } from '../contexts/AppContext'
 
-// Styling
-const CardWrapper = styled.div`
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 80vw;
-`
-const Heading = styled.h1`
-  font-family: 'Arial', sans-serif;
-  font-size: calc(1.5rem + 2vw);
-  text-align: center;
-`
-
 export default function Home() {
   // useContext
-  const { list } = useContext(ListContext)
+  const { list, setList } = useContext(ListContext)
   const { setUrlDetail } = useContext(DetailContext)
   const { searchResult, setSearchResult } = useContext(SearchContext)
 
+  const getPoke = async () => {
+    try {
+      const response = await getAllPoke(
+        `${process.env.NEXT_PUBLIC_BASE_URL}pokemon?limit=100&offset=200`
+      )
+      const data = response.results
+
+      setList(data)
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
   useEffect(() => {
-    console.log(process.env.NEXT_PUBLIC_BASE_URL)
+    getPoke()
   }, [])
 
   return (
@@ -63,3 +65,32 @@ export default function Home() {
     </>
   )
 }
+
+// Styling
+const CardWrapper = styled.div`
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  @media ${device.mobileS} {
+    width: 65vw;
+  }
+  @media ${device.mobileM} {
+  }
+  @media ${device.mobileL} {
+  }
+  @media ${device.tablet} {
+  }
+  @media ${device.laptop} {
+    width: 80vw;
+  }
+  @media ${device.laptopL} {
+    width: 70vw;
+  }
+`
+const Heading = styled.h1`
+  font-family: 'Arial', sans-serif;
+  font-size: calc(1.5rem + 2vw);
+  text-align: center;
+`
